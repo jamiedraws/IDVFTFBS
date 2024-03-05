@@ -1,0 +1,33 @@
+$select: ".product-details" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/space";
+@use "Shared/scss/templates/base/abstracts/chart";
+
+@mixin base {
+    #{$select} {
+        @include space.between-flow-elements() {
+        }
+
+        @include chart.structure;
+
+        @media all and (min-width: queries.set(600)) {
+            @include chart.inline-grid;
+        }
+
+        @media all and (max-width: queries.set(600)) {
+            @include chart.block-layout;
+        }
+
+        table {
+            margin-top: 1rem;
+        }
+
+        @content;
+    }
+}

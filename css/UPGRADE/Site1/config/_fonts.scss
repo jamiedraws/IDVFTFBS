@@ -1,0 +1,28 @@
+@use "sass:map";
+
+@forward "Shared/scss/templates/base/config/units";
+
+$list: (
+    primary: (
+        raleway,
+        Helvetica,
+        sans-serif
+    ),
+    secondary: (
+        montserrat,
+        Helvetica,
+        sans-serif
+    ),
+    tertiary: (
+        garamond-premier-pro,
+        serif
+    ),
+    cursive: (
+        kinescope,
+        serif
+    )
+);
+
+@function get($name) {
+    @return map.get($list, $name);
+}

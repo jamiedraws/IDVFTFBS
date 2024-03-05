@@ -1,0 +1,110 @@
+.dtm__in .l-header__in,
+.dtm__in .l-outer__in {
+	max-width: 1200px;
+	width: 100%;
+	margin: auto;
+}
+
+.dtm .dtm__in .l-header {
+	position: relative;
+	z-index: 10;
+}
+
+.header--first {
+    position: relative;
+    z-index: 10;
+}
+
+.dtm__in--dv .l-outer__in {
+    padding: 0.55em;
+}
+
+.header__logo {
+    padding: 10px 0;
+}
+
+.header button {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+#mobileMenu > a {
+    min-width: 45vw;
+}
+
+#mobileMenuProducts {
+    min-width: 26vw;
+}
+
+.header__menu--open .localization {
+    min-width: 21vw;
+}
+
+.has-search-icon {
+	position: relative;
+	display: flex;
+    border: 2px solid black;
+    border-radius: 0.5em;
+}
+.has-search-icon input {
+	text-indent: 40px;
+	font: 600 18px 'sofia-pro', sans-serif;
+	letter-spacing: 1px;
+	height: 55px;
+	color: black;
+}
+
+#textS {
+	border-radius: 5px 0 0 5px;
+	font: 500 15px/1 'sofia-pro', sans-serif;
+	text-transform: uppercase;
+    background-color: white;
+}
+
+#searchSubmit {
+    min-width: 3em;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	text-indent: 0;
+	line-height: 1;
+	height: auto;
+	justify-content: center;
+	background: #000;
+	transition: background 200ms ease-in-out;
+	border: none;
+	border-radius: 0 5px 5px 0;
+	color: white;
+}
+
+#searchSubmit:focus,
+#searchSubmit:hover {
+	background: #444;
+}
+
+#searchSubmit > span {
+	font-family: 'sofia-pro', sans-serif;
+	font-weight: 500;
+	position: relative;
+	margin-top: 4px;
+}
+
+.has-search-icon::after {
+		content: "";
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		background: url(/images/3.0000/search-icon.png);
+		background-size: contain;
+		background-repeat: no-repeat;
+		z-index: 3;
+		left: 10px;
+		top: 12px;
+		opacity: 0.5;
+}
+
+.at-home-logo {
+    display: none;
+}

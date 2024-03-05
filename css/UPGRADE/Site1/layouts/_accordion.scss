@@ -1,0 +1,91 @@
+$select: ".accordion" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// components
+@use "Shared/scss/templates/base/layouts/accordion";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/space";
+
+@mixin base {
+    @include accordion.base;
+
+    #{$select} {
+        &__button[aria-expanded=true]:focus,
+        &__button:focus,
+        &--is-focused,
+        &:focus-within {
+            outline: none;
+        }
+        @content;
+    }
+}
+
+@mixin tabs {
+    #{$select} {
+        &--tabs {
+            font-size: fonts.rem(18);
+
+            $border-color: #ffaf9c;
+
+            #{$select} {
+                &__group {
+                    display: flex;
+                    align-items: center;
+                    white-space: nowrap;
+                    overflow-x: auto;
+
+                    text-align: center;
+                }
+
+                &__header {
+                    flex: 1 0 auto;
+
+                    font: inherit;
+                }
+
+                &__button,
+                &__link {
+                    text-transform: uppercase;
+
+                    display: block;
+                    padding: 1rem;
+
+                    border-bottom: 1px solid #{$border-color};
+
+                    &[aria-expanded="true"] {
+                        background: #ffcdc0;
+                    }
+                }
+
+                &__content {
+                    padding: 1.5rem 0;
+
+                    @include space.between-flow-elements() {
+                    }
+                }
+
+                &__title {
+                    font-size: fonts.rem(25);
+                }
+
+                &__list {
+                    margin: 0;
+                    li {
+                        list-style: inherit;
+                        margin: 0.5em 0;
+                    }
+                    &--none {
+                        list-style: none;
+                    }
+                }
+            }
+
+            @content;
+        }
+    }
+}

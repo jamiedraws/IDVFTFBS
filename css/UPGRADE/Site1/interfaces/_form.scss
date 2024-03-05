@@ -1,0 +1,95 @@
+// utils
+@use "Shared/scss/templates/base/utils/scope";
+
+// components
+@use "./../components/braintree";
+@use "./../components/payment-icons";
+@use "./../components/validation-summary-errors" as vse;
+@use "./../components/order-table";
+@use "./../components/offer-details";
+@use "./../components/form";
+@use "./../components/status-screen";
+
+// layouts
+@use "./../layouts/order";
+@use "./../layouts/express-checkout";
+@use "./../layouts/checkout";
+@use "./../layouts/fieldset";
+@use "./../layouts/modal-dialog";
+
+@mixin base {
+    // utils
+
+    // components
+
+    @include vse.base;
+
+    @include form.select;
+    @include form.checkbox;
+    @include form.username-password;
+
+    // layouts
+    @include fieldset.base;
+
+    @content;
+}
+
+@mixin checkout {
+    // utils
+
+    // components
+    @include payment-icons.base;
+    @include status-screen.initialize;
+    @include status-screen.inline;
+    @include status-screen.checkout-form;
+
+    @include scope.for-template {
+        @include braintree.base;
+        @include braintree.alias;
+    }
+
+    // layouts
+    @include checkout.base;
+    @include checkout.cart;
+    @include checkout.order-item;
+
+    @include fieldset.login;
+
+    @include modal-dialog.cvv;
+
+    @content;
+}
+
+@mixin order-form {
+    // components
+    @include offer-details.base;
+    @include order-table.base;
+
+    @include scope.for-template {
+        #paypal-button .zoid-outlet > iframe.zoid-component-frame {
+            z-index: 98 !important;
+        }
+    }
+
+    // layouts
+    @include order.base;
+    @include order.responsive;
+
+    @include scope.for-template {
+        @include express-checkout.base;
+    }
+}
+
+@mixin shopping-cart {
+    @content;
+}
+
+@mixin create-account {
+    // utils
+
+    // components
+
+    // layouts
+    @include fieldset.create-account;
+    @include form.checkbox;
+}

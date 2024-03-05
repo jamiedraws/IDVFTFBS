@@ -1,0 +1,53 @@
+$select: ".header" !default;
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+@use "../config/queries";
+
+// abstracts
+@use "../../../Shared/css/template/base/abstracts/group";
+
+@mixin base {
+    #{$select} {
+        color: colors.get(base-light);
+        background: colors.get(primary);
+
+        &__group {
+            @include group.contain;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &__title {
+            font-weight: 700;
+            font-size: fonts.rem(36);
+            line-height: 1.2;
+        }
+
+        &__title-sub {
+            font-weight: 500;
+            font-size: 0.5em;
+            display: block;
+            margin: 0.33em 0 0;
+        }
+
+        @media all and (min-width: queries.get(nav-max)) and (max-width: queries.get(section-max)) {
+            &__title {
+                font-size: 2.7vw;
+            }
+        }
+
+        @media all and (min-width: queries.get(nav-max)) {
+            &__title {
+                text-align: center;
+            }
+        }
+
+        @media all and (max-width: queries.get(nav-max)) {
+            display: none;
+        }
+
+        @content;
+    }
+}

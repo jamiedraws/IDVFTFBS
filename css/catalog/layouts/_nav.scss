@@ -1,0 +1,172 @@
+$select: ".nav" !default;
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+@use "../config/queries";
+
+// layouts
+@use "../../../Shared/css/template/base/layouts/nav" with
+    (
+        $colors: (
+            background: colors.get(accent),
+            button-open: colors.get(accent),
+            button-close: colors.get(base-dark)
+        ),
+        $mq: (
+            container-min: queries.get(nav-min),
+            container-max: queries.get(nav-max)
+        )
+    );
+
+@mixin base {
+    @include nav.new {
+        font-size: fonts.rem(15);
+        font-weight: 500;
+        color: colors.get(base-light);
+        box-shadow: none;
+        text-transform: uppercase;
+        z-index: 6;
+
+        &__in {
+            padding: 0;
+        }
+
+        &__pane {
+            color: colors.get(primary);
+        }
+
+        @media all and (max-width: queries.get(nav-max)) {
+            &__logo {
+                max-width: 34em;
+            }
+            &__pane,
+            &__pane::before,
+            &__pane::after {
+                background: colors.get(primary);
+                color: colors.get(base-light);
+            }
+            &__link {
+                padding: 1.5em;
+                font-size: 1.25em;
+            }
+        }
+
+        @media all and (min-width: queries.get(nav-max)) {
+            &__logo {
+                display: none;
+            }
+        }
+
+    }
+
+    @include nav.bar {
+
+        &__in > &__logo {
+            display: none;
+        }
+
+        &__logo {
+            font-size: 0.5em;
+            opacity: 0;
+        }
+
+        &__list {
+            justify-content: center;
+
+            > a {
+                flex: 0 1 auto;
+            }
+        }
+
+        &__link {
+            padding: 1rem;
+        }
+
+        @media all and (min-width: queries.get(nav-max)) {
+            &__list > a {
+                flex: 1 1 auto;
+                padding: 0.66em 0.25em;
+                transition: color 0.25s, background 0.33s;
+                &:hover,
+                &:focus {
+                    text-decoration: none;
+                    background: colors.get(accent-dark);
+                    color: colors.get(base-light);
+                }
+                &:last-of-type {
+                    outline: 1px solid colors.get(callout);
+                    outline-offset: -6px;
+                    color: colors.get(callout);
+                    font-weight: bold;
+                    &:hover,
+                    &:focus {
+                        outline: none;
+                        color: colors.get(base-light);
+                        background: colors.get(callout);
+                    }
+                }
+            }
+        }
+
+    }
+
+    @include nav.drawer {
+        &__logo {
+            font-size: 0.5em;
+        }
+
+        &__label {
+            // made this larger like the comp
+            transform: scale(1);
+            margin-right: 1em;
+        }
+
+        @media all and (max-width: queries.get(nav-max)) {
+            background: colors.get(primary);
+        }
+    
+    }
+
+    #{$select} {
+        @content;
+    }
+}
+
+@mixin drawer-expanded {
+    #{$select} {
+            
+        &__label {
+            margin-right: 1em;
+            &::after,
+            span {
+                transform: none;
+            }
+            span,
+            &::before,
+            &::after {
+                border-width: 0.1em;
+            }
+            span {
+                margin: 0.33em 0 0;
+            }
+            &::after {
+                margin-top: 0.33em;
+            }
+        }
+
+        @content;
+    }
+}
+
+@mixin less-links {
+    #{$select} {
+
+        &__link:first-of-type,
+        &__link:last-of-type {
+            display: none;
+        }
+
+        @content;
+    }
+}

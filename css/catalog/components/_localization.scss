@@ -1,0 +1,57 @@
+    .localization > * {
+      display: inline-block;
+    }
+
+    .localization__link {
+        padding: 5px;
+        display: inline-block;
+    }
+
+    @media all and (min-width: 566px) {
+        .localization {
+            font-size: 1.4rem;
+        }
+
+        .header__menu--mobile > .localization {
+            display: none;
+        }
+
+        .header__topbar > .localization {
+            text-align: center;
+            padding: 0;
+        }
+
+        .header__topbar .localization > *:not(:last-child)::after {
+          content: "|";
+        }
+    }
+
+    @media all and (min-width: 901px) {
+        .header__topbar > .localization {
+            text-align: right;
+        }
+    }
+
+    @media all and (max-width: 565px) {
+        .dtm .header__topbar {
+            display: none;
+        }
+
+        .header__menu--open .localization {
+            position: absolute;
+            right: 4vw;
+            top: 55vh;
+            width: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .header__menu--open .localization__link {
+            position: relative;
+            right: 0;
+            top: 0;
+            display: inline-block;
+            font-size: inherit;
+        }
+    }

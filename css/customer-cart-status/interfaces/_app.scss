@@ -1,0 +1,26 @@
+// utils
+@use "Shared/scss/templates/base/utils/scope";
+@use "./../utils/view";
+@use "./../utils/section";
+
+// components
+@use "./../components/button";
+
+// layouts
+@use "./../layouts/modal-dialog";
+@use "./../layouts/customer-cart-status";
+
+@mixin defer {
+    // utils
+    @include view.base;
+    @include section.base;
+
+    // components
+    @include scope.for-template {
+        @include button.base;
+    }
+
+    // layouts
+    @include modal-dialog.base;
+    @include customer-cart-status.base;
+}

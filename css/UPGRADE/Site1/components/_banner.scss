@@ -1,0 +1,71 @@
+$select: ".banner" !default;
+
+// config
+@use "./../config/fonts";
+
+@mixin base {
+    #{$select} {
+        @content;
+    }
+}
+
+@mixin countdown {
+    @include countdown.base;
+
+    #{$select} {
+        &--countdown {
+            flex: 1;
+            font: 1.5em fonts.get(secondary), Helvetica, sans-serif;
+
+            #{$select} {
+                &__header {
+                    display: block;
+                    transform: skew(-10deg);
+                }
+
+                &__callout {
+                }
+
+                &__desc {
+                    font-size: 0.8em;
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin new {
+    #{$select} {
+        &--new {
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: fonts.rem(100);
+            height: fonts.rem(100);
+            background-color: transparent;
+            overflow: hidden;
+            #{$select} {
+                &__text {
+                    position: absolute;
+                    top: fonts.rem(18);
+                    left: fonts.rem(-41);
+                    background-color: #84329b;
+                    transform: rotate(-45deg);
+                    -webkit-transform: rotate(-45deg);
+                    padding: 5px 0px 4px;
+                    width: fonts.rem(150);
+                    color: white;
+                    font-size: fonts.em(26);
+                    line-height: 1;
+                    text-align: center;
+                    letter-spacing: 1px;
+                }
+            }
+
+            @content;
+        }
+    }
+}

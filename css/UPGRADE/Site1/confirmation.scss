@@ -1,0 +1,19 @@
+// interfaces
+@use "interfaces/app";
+@use "interfaces/dtm";
+
+@include app.defer;
+
+@include dtm.base;
+@include dtm.page;
+
+[data-append="#content_top"] {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#content_top {
+    [data-append="#content_top"] {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,128 @@
+$select: ".product-grid" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/space";
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/background";
+
+@function set-product-item-flex($multiplier: 1, $gap: 0.75rem) {
+    @return 0 1 calc((100% / #{$multiplier}) - (#{$gap} * 2));
+}
+
+@mixin base {
+    #{$select} {
+        text-align: center;
+
+        &__group {
+            $gap: 0.75rem;
+
+            @include group.contain($gap);
+            justify-content: center;
+        }
+
+        &__title {
+            font: bold fonts.rem(50) fonts.get(accent);
+
+            @media screen and (max-width: 750px) {
+                //font-size: fonts.rem(35);
+                font-size: 5.5vw;
+            }
+
+            color: colors.get(primary);
+            text-transform: uppercase;
+        }
+
+        &__header {
+            padding: 2em 0;
+            @include background.color-map(
+                colors.accent(latte-tint),
+                colors.get(base)
+            );
+            @include space.between-flow-elements(1em) {
+            }
+        }
+
+        &__group > &__header {
+            flex-basis: 100%;
+            text-transform: uppercase;
+        }
+
+        &__copy {
+            @include space.between-flow-elements() {
+            }
+        }
+
+        @content;
+    }
+}
+
+@mixin category {
+    #{$select} {
+        &--category {
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin listing {
+    #{$select} {
+        &--listing {
+            #{$select} {
+                &__group {
+                    @include group.flexchild(set-product-item-flex(1));
+
+                    @media all and (min-width: queries.set(500)) {
+                        @include group.flexchild(set-product-item-flex(2));
+                    }
+
+                    @media all and (min-width: queries.set(760)) {
+                        @include group.flexchild(set-product-item-flex(3));
+                    }
+
+                    @media all and (min-width: queries.set(1000)) {
+                        @include group.flexchild(set-product-item-flex(4));
+                    }
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin additional {
+    #{$select} {
+        &--additional {
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin top-selling {
+    #{$select} {
+        &--top-selling {
+            #{$select} {
+                &__group {
+                    @include group.flexchild(set-product-item-flex(1));
+
+                    @media all and (min-width: queries.set(500)) {
+                        @include group.flexchild(set-product-item-flex(2));
+                    }
+                }
+            }
+
+            @content;
+        }
+    }
+}

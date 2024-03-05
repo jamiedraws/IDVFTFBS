@@ -1,0 +1,132 @@
+@use "../themes/colors";
+@use "../themes/fonts";
+@use "../themes/background";
+
+@use "../interfaces/dtm";
+
+@use "../layouts/document";
+@use "../layouts/view";
+@use "../layouts/section";
+@use "../layouts/account" with (
+    $border-color: colors.$account-border
+);
+@use "../layouts/checkout" with (
+    $border-color: colors.$account-border
+);
+@use "../layouts/form" with (
+    $border-color: colors.$account-border
+);
+@use "../layouts/cart" with (
+    $border-color: colors.$account-border
+);
+
+@use "../components/burst" with (
+    $color-primary: currentColor,
+    $color-secondary: currentColor
+);
+@use "../components/divider-line";
+@use "../components/button";
+@use "../components/validate";
+@use "../components/icons";
+@use "../components/chart" with (
+    $border-color: colors.$account-border,
+    $breakpoint: 1000px
+);
+@use "../components/validation-summary-errors";
+
+@use "../media/contain";
+@use "../media/load-item";
+
+@use "../../Shared/css/template/dtm/components/modal" with (
+    $color: colors.$second,
+    $background-color: rgba(255, 255, 255, 0.75)
+);
+
+// for the critical rendering path
+@mixin critical {
+	@include fonts.request;
+	@include view.new;
+	@include section.new;
+	// @include load-item.new(".defer") {
+	// 	@include load-item.from-top;
+	// }
+	@include background.new;
+	@include contain.new;
+	@include form.new;
+
+	#{contain.$select} {
+	}
+
+	@content;
+}
+
+@mixin new {
+	@include critical;
+	@include icons.new;
+	@include modal.new {
+		font-size: 2rem;
+	}
+	@include form.fieldset;
+	@include form.field-label(colors.$account-border);
+	@include form.checkbox;
+	@include form.select;
+	@include form.icon-field-combobox;
+	@include validate.new;
+	@include validate.is-valid-select;
+	@include validate.is-invalid-select;
+	@include validation-summary-errors.new;
+
+	@include account.new {
+		@include button.new;
+		@include button.second;
+		@include document.form;
+		@include dtm.unset-input-select;
+	}
+
+	@include checkout.new;
+	@include divider-line.new {
+		color: colors.$account-border;
+	}
+	@include burst.new;
+
+	@include cart.new;
+	@include chart.new;
+	@include chart.grid;
+	@include chart.order {
+		th[data-id="OrderId"] {
+			min-width: 6em;
+		}
+	}
+
+	.main {
+		min-height: 100vh;
+	}
+
+	#reviewOrder {
+		display: none;
+	}
+
+	@content;
+}
+
+@mixin checkout {
+	@include new;
+
+	@include checkout.cart;
+	@include checkout.order-item;
+	@include checkout.offer-details;
+	@include dtm.express-checkout {
+		#{account.$select} {
+			&__header + #{dtm.$select-checkout} {
+				margin-top: 1rem;
+			}
+		}
+	}
+	@include dtm.facebox;
+	@include button.express-checkout;
+	@include account.checkout;
+	@include cart.micro;
+
+	@include form.field-button-label;
+	@include form.state-tax;
+}

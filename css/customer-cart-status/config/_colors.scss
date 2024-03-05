@@ -1,0 +1,32 @@
+@use "sass:map";
+
+$select: ".color" !default;
+
+$list: (
+    dark: black,
+    gray-light: #f1f1f1,
+    light: white,
+    base: #000,
+    primary: #006b54,
+    accent: #ca7083,
+    alt: #e1bc35,
+    highlight: #1eb53a,
+    attention: #c64c21,
+    callout: #f83f5b,
+    pop: #3cb4e5,
+    placeholder: #444444
+);
+
+$products: (
+    default: #3c3c3c,
+    dazzling-mint: #1540a8,
+    elderberry-lemonade: #8b24a4
+);
+
+@function get($name) {
+    @return map.get($list, $name);
+}
+
+@function product($name) {
+    @return map.get($products, $name);
+}

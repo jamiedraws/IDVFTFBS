@@ -1,0 +1,18 @@
+$select: ".klaviyo-form-T9QMVM" !default;
+
+// config
+@use "./../config/queries";
+@use "./../config/fonts";
+@use "./../config/colors";
+
+@mixin base {
+    #{$select} {
+        &--contains-overrides {
+            span[style="font-family: montserrat, Helvetica, Arial, sans-serif; font-weight: 500; font-size: 18px;"] {
+                display: none !important;
+            }
+        }
+
+        @content;
+    }
+}

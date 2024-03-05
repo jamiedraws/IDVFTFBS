@@ -1,0 +1,115 @@
+#dtm.dtm--processpayment #content_top {
+  box-shadow: none;
+  border: none;
+}
+#dtm.dtm--processpayment .validation-summary-errors span {
+  background: none;
+}
+
+.dtm .dtm__in [class*=c-brand],
+.dtm .dtm__in [class*=c-brand] * {
+  font-size: 1em;
+}
+
+.dtm__in .express-checkout__checkout-option {
+  flex-basis: 100%;
+  overflow: visible;
+  margin: 0 1em;
+  padding: 1em 0;
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  position: relative;
+}
+.dtm__in .express-checkout__checkout-option + .express-checkout__checkout-option {
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.25);
+}
+.dtm__in .express-checkout__checkout-option label {
+  flex-grow: 1;
+}
+.dtm__in .express-checkout__checkout-option label {
+  display: flex;
+}
+.dtm__in .express-checkout__checkout-option input[type=checkbox],
+.dtm__in .express-checkout__checkout-option input[type=radio] {
+  opacity: 0;
+  position: absolute;
+  padding: 0;
+}
+.dtm__in .express-checkout__checkout-option input[type=checkbox] ~ .express-checkout__radio, .dtm__in .express-checkout__checkout-option input[type=checkbox] ~ .express-checkout__label > .express-checkout__radio,
+.dtm__in .express-checkout__checkout-option input[type=radio] ~ .express-checkout__radio,
+.dtm__in .express-checkout__checkout-option input[type=radio] ~ .express-checkout__label > .express-checkout__radio {
+  margin-right: 1rem;
+}
+.dtm__in .express-checkout__checkout-option input[type=checkbox]:checked ~ .express-checkout__radio, .dtm__in .express-checkout__checkout-option input[type=checkbox]:checked ~ .express-checkout__label > .express-checkout__radio,
+.dtm__in .express-checkout__checkout-option input[type=radio]:checked ~ .express-checkout__radio,
+.dtm__in .express-checkout__checkout-option input[type=radio]:checked ~ .express-checkout__label > .express-checkout__radio {
+  background-image: url("data:image/svg+xml;charset=utf8,    %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E        %3Cpath fill='none' stroke-width='3px' stroke='white' d='M1.73,12.91 8.1,19.28 22.79,4.59'%3E%3C/path%3E    %3C/svg%3E");
+  background-size: 0.9em 0.9em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #7ac142;
+}
+.dtm__in .express-checkout__checkout-option input[type=checkbox]:focus ~ .express-checkout__radio, .dtm__in .express-checkout__checkout-option input[type=checkbox]:focus ~ .express-checkout__label > .express-checkout__radio,
+.dtm__in .express-checkout__checkout-option input[type=radio]:focus ~ .express-checkout__radio,
+.dtm__in .express-checkout__checkout-option input[type=radio]:focus ~ .express-checkout__label > .express-checkout__radio {
+  outline: 3px solid;
+}
+.dtm__in .express-checkout__checkout-option input[type=checkbox]:disabled ~ .express-checkout__label,
+.dtm__in .express-checkout__checkout-option input[type=radio]:disabled ~ .express-checkout__label {
+  opacity: 0.5;
+}
+.dtm__in .express-checkout__checkout-option img {
+  flex: 0 0 10rem;
+  max-width: 10rem;
+  min-width: 0;
+  min-height: 4rem;
+  border: 0.1rem solid #ccc;
+  margin: 0.5em;
+}
+.dtm__in .express-checkout__checkout-option [for=otCARD] img {
+  flex: 0 0 3rem;
+  max-width: 3rem;
+  min-height: 2rem;
+}
+.dtm__in .express-checkout__label {
+  flex: 1;
+  align-items: center;
+  margin: -0.5em;
+}
+.dtm__in .express-checkout__radio {
+  display: block;
+  -webkit-appearance: none;
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+  background: white;
+  font-family: inherit;
+  font-size: inherit;
+  width: 2em;
+  height: 2em;
+  flex: 0 0 2em;
+  padding: 0;
+  box-sizing: content-box;
+  position: relative;
+}
+.dtm__in .express-checkout__element:not([data-element-controller-name]) {
+  display: none;
+}
+.dtm__in .express-checkout__radio {
+  border-radius: 100%;
+  border-color: green;
+  border-width: 0.2em;
+  background-color: #eef0ed;
+  font-size: 0.7rem;
+}
+.dtm__in .express-checkout__checkout-option input[type=checkbox]:checked ~ .express-checkout__radio, .dtm__in .express-checkout__checkout-option input[type=checkbox]:checked ~ .express-checkout__label > .express-checkout__radio,
+.dtm__in .express-checkout__checkout-option input[type=radio]:checked ~ .express-checkout__radio,
+.dtm__in .express-checkout__checkout-option input[type=radio]:checked ~ .express-checkout__label > .express-checkout__radio {
+  background-size: 1.25em;
+}
+.dtm__in .express-checkout__element:not([data-element-controller-name]) {
+  display: none !important;
+}
+
+/*# sourceMappingURL=processpayment.css.map */

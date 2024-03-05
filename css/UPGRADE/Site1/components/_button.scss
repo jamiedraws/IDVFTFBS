@@ -1,0 +1,166 @@
+$select: ".button" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/colors";
+@use "./../config/queries";
+
+// components
+@use "Shared/scss/templates/base/components/button";
+
+@mixin base {
+    @include button.base {
+        text-transform: uppercase;
+        // comp seems to show 18px font
+        font: 700 var(--button-font-size, fonts.rem(18)) fonts.get(secondary);
+
+        border-radius: 0.5em;
+        border: 2px solid;
+        padding: 0.75em;
+
+        &::before,
+        &::after,
+        > span {
+            border-radius: inherit;
+        }
+
+        @include button.color-map(
+            $background-color:
+                var(--button-background-color, colors.primary(warm-rose-hue-6)),
+            $text-color: var(--button-text-color, colors.primary-type(white))
+        );
+
+        &--clear-to-color {
+            color: inherit;
+            background: none;
+            border-color: #898890;
+            &::before,
+            &::after {
+                background: none;
+                transition: background 0.25s;
+            }
+            &:link,
+            &:visited {
+                background: none;
+                color: inherit;
+            }
+            &:hover,
+            &:focus {
+                color: white;
+                border-color: #d18777;
+                &::before,
+                &::after {
+                    background: #d18777;
+                }
+            }
+        }
+
+        &--clear-to-storm {
+            color: inherit;
+            background: none;
+            border-color: #898890;
+            &::before,
+            &::after {
+                background: none;
+                transition: background 0.25s;
+            }
+            &:link,
+            &:visited {
+                background: none;
+                color: inherit;
+            }
+            &:hover,
+            &:focus {
+                color: white;
+                border-color: colors.primary(stormcloud);
+                &::before,
+                &::after {
+                    background: colors.primary(stormcloud);
+                }
+            }
+        }
+
+        @media all and (min-width: queries.get(document-mobile-portrait)) {
+            padding: var(--button-padding, 0.75em 2.2em);
+        }
+    }
+
+    #{$select} {
+        @content;
+    }
+}
+
+@mixin view-products {
+    @include button.name-color-map(
+        $namespace: "view-products",
+        $background-color: white,
+        $text-color: #777,
+        $border-color: #777
+    );
+
+    #{$select} {
+        &--view-products {
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin retailer {
+    @include button.name-color-map(
+        "retailer",
+        colors.get(highlight),
+        colors.get(light)
+    );
+
+    #{$select} {
+        &--retailer {
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin express-checkout {
+    @include button.express-checkout;
+}
+
+@mixin stormcloud {
+    @include button.name-color-map(
+        "stormcloud",
+        colors.primary(stormcloud-hue-3),
+        colors.get(light)
+    );
+
+    #{$select} {
+        &--stormcloud {
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin transparent {
+    @include button.name-color-map("transparent", black, white, white);
+
+    #{$select} {
+        &--transparent {
+            &,
+            &:not(:hover):not(:focus)::before,
+            &:not(:hover):not(:focus)::after {
+                background: transparent;
+            }
+
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}

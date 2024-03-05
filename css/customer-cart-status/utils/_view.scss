@@ -1,0 +1,49 @@
+$select: ".view" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// utils
+@use "Shared/css/template/base/utils/view" with (
+    $breakpoint: queries.get(section-max)
+);
+
+@mixin base {
+    @include view.new {
+        &__target {
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: -1em;
+                outline: 1px solid black;
+                opacity: 0;
+            }
+        }
+
+        &__anchor:target ~ &__route-target &__target {
+            &::before {
+                opacity: 1;
+            }
+        }
+    }
+
+    @include view.set-anchor-position(
+        $static-amount: #{queries.rem(124)},
+        $dynamic-amount: #{queries.rem(108)}
+    );
+
+    @include view.zero-anchor-position("[data-viewport]");
+
+    #{$select} {
+        @content;
+    }
+}

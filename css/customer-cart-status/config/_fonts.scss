@@ -1,0 +1,32 @@
+@use "sass:map";
+
+$select: ".font" !default;
+
+// abstracts
+@forward "Shared/css/template/base/config/units";
+
+$list: (
+    base: (
+        trade-gothic-next,
+        sans-serif
+    ),
+    primary: (
+        trade-gothic-next,
+        sans-serif
+    ),
+    accent: (
+        trade-gothic-next-condensed,
+        trade-gothic-next,
+        sans-serif
+    ),
+    highlight: (
+        trade-gothic-next-compressed,
+        Helvetica
+    ),
+    callout: Helvetica,
+    placeholder: Helvetica
+);
+
+@function get($name) {
+    @return map.get($list, $name);
+}

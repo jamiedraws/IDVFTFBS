@@ -1,0 +1,200 @@
+$select: ".product" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/space";
+@use "Shared/scss/templates/base/abstracts/list";
+@use "Shared/scss/templates/base/abstracts/burst";
+@use "Shared/scss/templates/base/abstracts/background";
+
+@mixin base {
+    #{$select} {
+        ul {
+            @include list.structure;
+            @include list.bullet;
+        }
+
+        &__group {
+            @include group.contain(1rem);
+        }
+
+        &__media {
+            flex-basis: queries.rem(520);
+            @include space.between-flow-elements(2rem) {
+            }
+        }
+
+        &__image {
+            display: block;
+            border: 1px solid #777;
+            position: relative;
+        }
+
+        &__image-container {
+            position: relative;
+        }
+
+        &__image-container &__new {
+            position: absolute;
+            top: 1em;
+            right: 1em;
+            left: auto;
+        }
+
+        &__new {
+            @include burst.circle($background: #f7264e);
+
+            > b {
+                font-size: 0.7em;
+            }
+        }
+
+        &__info {
+            flex-grow: 1;
+            flex-basis: 25em;
+
+            @include space.between-flow-elements(2rem) {
+            }
+        }
+
+        &__title {
+            color: colors.get(primary);
+        }
+
+        &__desc {
+            font-size: fonts.rem(25);
+            line-height: 1.2;
+
+            margin-top: 1rem;
+        }
+
+        &__reviews {
+            max-height: 1.5em;
+            position: relative;
+            z-index: 1;
+        }
+
+        &__price {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            font-size: 1.5em;
+        }
+
+        &__price + &__sku {
+            margin-top: 0;
+        }
+
+        &__sku {
+            display: block;
+        }
+
+        &__oos {
+            display: block;
+            &-message {
+                flex: 0 1 100%;
+            }
+        }
+
+        &__hint {
+            display: block;
+        }
+
+        &__cart {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+
+            > * {
+                flex: 1 1 100%;
+            }
+        }
+
+        &__promo {
+            background: colors.accent(latte-tint);
+            margin-top: 1rem;
+            text-align: center;
+            padding: 1em 0;
+            font-size: 1.15em;
+            button {
+                font-size: 1em;
+            }
+        }
+
+        &__important-info {
+            display: inline-block;
+            font-weight: normal;
+            margin-top: 1rem;
+            color: #888;
+        }
+
+        &__message {
+            color: colors.primary(warm-rose-hue-6);
+            text-align: left;
+            text-transform: uppercase;
+            font-size:  1.5em;
+            font-weight: bold;
+            margin: 0;
+
+        display: inline-block;
+                
+            @media all and (max-width: queries.get(document-mobile-portrait)) {
+                display: block;
+                margin: 0.5em 0;
+            }
+        }
+
+        @content;
+    }
+}
+
+@mixin detail {
+    #{$select} {
+        &--detail {
+            h2 + ul {
+                margin-top: 1rem;
+            }
+
+            #{$select} {
+                &__image img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                &__cart {
+                    font-size: 1.1rem;
+                }
+
+                &__new {
+                    font-size: 3em;
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin related {
+    #{$select} {
+        &--related {
+            #{$select} {
+                &__media {
+                    font-size: 1rem;
+                    flex-basis: queries.em(100);
+                }
+
+                &__info {
+                    flex-basis: 10em;
+                }
+            }
+
+            @content;
+        }
+    }
+}

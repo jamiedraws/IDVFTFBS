@@ -1,0 +1,384 @@
+.svg-symbols {
+  display: none;
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke: currentColor;
+  fill: none;
+  pointer-events: none;
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 3;
+}
+.icon--combobox {
+  transform: rotate(0.75turn);
+}
+
+@supports (position: sticky) {
+  .view__anchor {
+    top: -6rem;
+  }
+}
+@media all and (max-width: 1000px) {
+  .view__anchor {
+    top: -6rem;
+  }
+}
+@supports (position: sticky) {
+  .view__scroll {
+    top: 6rem;
+  }
+}
+@media all and (max-width: 1000px) {
+  .view__scroll {
+    top: 6rem;
+  }
+}
+
+.defer--from-top::after {
+  top: calc(30vh - 6rem);
+}
+
+@media all and (max-width: 1000px) {
+  .defer--from-top::after {
+    top: calc(30vh - 6rem);
+  }
+}
+.view {
+  position: relative;
+}
+.view__anchor {
+  position: absolute;
+}
+.view__in {
+  position: relative;
+}
+.view__scroll {
+  position: sticky;
+}
+
+.section {
+  margin: 0;
+}
+.section__contain {
+  max-width: 1000px;
+  margin: auto;
+  box-sizing: content-box;
+}
+.section__in {
+  max-width: 1000px;
+  margin: auto;
+  box-sizing: content-box;
+  padding: 2rem;
+}
+.section__block {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes rotate-cycle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate-cycle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes svg-cross {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes svg-cross {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.load-item::after {
+  display: block;
+  padding: 12%;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+  opacity: 0;
+  will-change: transform;
+  contain: strict;
+  -webkit-animation: fade-in 0.1s ease-in forwards, rotate-cycle 0.7s cubic-bezier(0.5, 0.4, 0.5, 0.6) 60 forwards, fade-out 0.1s ease-in 38.1818181818s forwards;
+  animation: fade-in 0.1s ease-in forwards, rotate-cycle 0.7s cubic-bezier(0.5, 0.4, 0.5, 0.6) 60 forwards, fade-out 0.1s ease-in 38.1818181818s forwards;
+  animation-play-state: paused;
+  background: url("data:image/svg+xml;charset=utf8,    %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='xMidYMid'%3E        %3Cpath stroke='hsla(0, 2.2624434389%25, 43.3333333333%25, 1)' d='M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50' fill='hsla(0, 2.2624434389%25, 43.3333333333%25, 1)'%3E%3C/path%3E    %3C/svg%3E") no-repeat center center;
+  width: 50%;
+  height: 50%;
+  background-size: 50%;
+  max-width: 3em;
+  max-height: 3em;
+}
+
+.load-item::after {
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
+}
+.load-item--success::after {
+  display: none;
+}
+.load-item .load-item__progress {
+  opacity: 0;
+  -webkit-transition: opacity 250ms ease-in-out;
+  transition: opacity 250ms ease-in-out;
+}
+.load-item .load-item__success {
+  opacity: 1;
+  -webkit-transition: opacity 250ms ease-in-out;
+  transition: opacity 250ms ease-in-out;
+}
+@media (prefers-reduced-motion) {
+  .load-item .load-item__progress, .load-item .load-item__success {
+    transition: none;
+  }
+}
+.load-item--failure::after {
+  display: block;
+  padding: 2%;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+  opacity: 0;
+  -webkit-animation: svg-cross 0.3s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation: svg-cross 0.3s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  background: url("data:image/svg+xml;charset=utf8,    %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 612 612' preserveAspectRatio='xMidYMid'%3E        %3Cpolygon stroke='none' points='612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397 306,341.411 576.521,611.397 612,575.997 341.459,306.011' fill='hsla(0, 0%25, 14.5098039216%25, 1)'/%3E    %3C/svg%3E") no-repeat center center;
+  background-size: 50%;
+  width: 50%;
+  height: 50%;
+  max-width: 2em;
+  max-height: 2em;
+}
+
+.load-item {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  min-height: 1px;
+  min-width: 1px;
+  overflow: hidden;
+}
+.load-item::before, .load-item::after {
+  content: "";
+}
+.load-item::before {
+  display: block;
+}
+.load-item::after {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  z-index: -1;
+}
+.load-item > img, .load-item > iframe, .load-item > noscript, .load-item > svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
+.contain {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  min-height: 1px;
+  min-width: 1px;
+  overflow: hidden;
+  background: whitesmoke;
+}
+.contain::before, .contain::after {
+  content: "";
+}
+.contain::before {
+  display: block;
+}
+.contain::after {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  z-index: -1;
+}
+.contain > img, .contain > iframe, .contain > noscript, .contain > svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+.contain--excerpt-thumb::before {
+  padding-bottom: calc(100% / (1.6666666667));
+}
+
+.hero-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4em 2em;
+  font-family: "sofia-pro", sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  color: #e9bcab;
+}
+.hero-banner::before, .hero-banner::after {
+  content: "";
+  flex: 0.5 1 auto;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.25;
+}
+.hero-banner h1 {
+  margin: 0 0.5em;
+  font-size: 2.5em;
+  font-size: clamp(2em, 5vw, 2.5em);
+}
+
+.excerpt {
+  font-weight: 400;
+}
+
+.excerpt--span-picture-with-copy-tile {
+  display: flex;
+  flex-wrap: wrap;
+  text-decoration: none;
+}
+@media all and (min-width: 69em) {
+  .excerpt--span-picture-with-copy-tile:nth-child(odd) {
+    flex-direction: row-reverse;
+  }
+  .excerpt--span-picture-with-copy-tile:nth-child(odd) .excerpt__link > svg {
+    transform: rotate(0.5turn);
+  }
+  .excerpt--span-picture-with-copy-tile:nth-child(even) .excerpt__link {
+    flex-direction: row;
+  }
+  .excerpt--span-picture-with-copy-tile:nth-child(even) .excerpt__link > svg {
+    transform: rotate(1turn);
+  }
+}
+.excerpt--span-picture-with-copy-tile picture {
+  flex: 1 1 30em;
+  background: whitesmoke;
+}
+.excerpt--span-picture-with-copy-tile picture > img {
+  object-fit: cover;
+}
+.excerpt--span-picture-with-copy-tile .excerpt__copy {
+  padding: calc(0.5em + 4vw);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-self: center;
+  flex: 1 1 30em;
+}
+.excerpt--span-picture-with-copy-tile .excerpt__copy > * + * {
+  margin-top: 2em;
+}
+.excerpt--span-picture-with-copy-tile .excerpt__title {
+  font-size: 1.5em;
+  line-height: 1.25;
+}
+.excerpt--span-picture-with-copy-tile .excerpt__desc {
+  font-style: italic;
+}
+.excerpt--span-picture-with-copy-tile .excerpt__link {
+  margin: -0.5em;
+  margin-top: 2em;
+  margin-bottom: -0.5em;
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+.excerpt--span-picture-with-copy-tile .excerpt__link > * {
+  margin: 0.5em;
+}
+.excerpt--span-picture-with-copy-tile .excerpt__link > svg {
+  width: 1em;
+  height: 1em;
+  transform: rotate(0.5turn);
+}
+.excerpt--span-picture-with-copy-tile .excerpt__link {
+  color: #f83f5b;
+}
+
+.excerpt--reveal-copy-on-view .excerpt__copy {
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-out;
+  transform: translateY(10%);
+  opacity: 0;
+}
+.excerpt--reveal-copy-on-view.excerpt--is-in-view .excerpt__copy {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/*# sourceMappingURL=blogpage.css.map */

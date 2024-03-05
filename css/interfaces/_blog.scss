@@ -1,0 +1,83 @@
+@use "sass:map";
+@use "sass:math";
+@use "../../Shared/css/template/blog/components/icons";
+@use "../../Shared/css/template/blog/layouts/article";
+@use "../../Shared/css/template/blog/layouts/excerpt";
+
+@use "../../Shared/css/template/base/layouts/view";
+@use "../../Shared/css/template/base/layouts/section";
+@use "./../layouts/hero" with (
+    $select: ".hero-banner"
+);
+@use "../../Shared/css/template/base/media/load-item";
+@use "../../Shared/css/template/base/media/contain";
+
+// @use "config/fonts";
+
+$colors: (
+    primary: #f83f5b
+);
+
+@mixin common {
+    @include icons.new;
+    @include view.new;
+    @include section.new;
+    @include load-item.new;
+    @include contain.new {
+        background: whitesmoke;
+
+        &--excerpt-thumb {
+            @include contain.ratio(math.div(600, 360));
+        }
+    }
+
+    @content;
+}
+
+@mixin page {
+    @include common {
+        @include hero.new;
+
+        @include excerpt.base {
+            // font-family: fonts.get(base);
+            font-weight: 400;
+        }
+        @include excerpt.span-picture-with-copy-tile() {
+            #{excerpt.$select} {
+                &__link {
+                    color: map.get($colors, primary);
+                }
+            }
+        }
+        @include excerpt.reveal-copy-on-view();
+    }
+}
+
+@mixin post {
+    @include common {
+        @include article.new;
+        @include article.post {
+            // font-family: fonts.get(base);
+            font-weight: 400;
+
+            #{article.$select} {
+                &__title {
+                    line-height: 1.25;
+                }
+
+                &__category {
+                    opacity: 0.5;
+                    display: block;
+                    margin-bottom: 1em;
+                }
+
+                &__prev,
+                &__next {
+                    color: map.get($colors, primary);
+                    text-decoration: none;
+                }
+            }
+        }
+        @include article.nav;
+    }
+}

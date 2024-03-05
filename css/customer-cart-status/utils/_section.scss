@@ -1,0 +1,41 @@
+$select: ".section" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// utils
+@use "Shared/css/template/base/utils/section" with (
+    $container: queries.get(section-max),
+    $frame: 1rem
+);
+
+@mixin base {
+    @include section.new {
+        &__frame {
+            padding: #{section.$frame};
+        }
+
+        &__block {
+            // margin: 2rem 0;
+        }
+    }
+
+    #{$select} {
+        @content;
+    }
+}
+
+@mixin breadcrumb {
+    #{$select} {
+        &--breadcrumb {
+            padding-top: 1rem;
+
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}

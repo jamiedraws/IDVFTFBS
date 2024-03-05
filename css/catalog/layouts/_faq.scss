@@ -1,0 +1,25 @@
+$select: ".faq" !default;
+
+@use "../../../Shared/css/template/base/abstracts/copy";
+
+@mixin base {
+    #{$select} {
+        &__header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        &__title {
+            font-size: 1.75em;
+        }
+
+        &__list > * {
+            @include copy.separate;
+        }
+
+        &__item {
+            margin-top: 1rem;
+        }
+        @content;
+    }
+}

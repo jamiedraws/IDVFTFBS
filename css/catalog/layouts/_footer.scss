@@ -1,0 +1,55 @@
+$select: ".footer" !default;
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+
+// components
+@use "../../../Shared/css/template/base/components/list";
+
+// themes
+@use "../../../Shared/css/template/base/themes/background";
+
+@mixin base {
+    #{$select} {
+        text-align: center;
+        font-size: 1.1rem;
+
+        @include background.color-map(
+            colors.get(footer),
+            colors.get(base-light)
+        );
+
+        nav {
+            @include list.structure($offset: 0);
+            @include list.inline;
+        }
+
+        address {
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @content;
+    }
+}
+
+@mixin links-to-columns {
+    #{$select} .list {
+        column-width: 10em;
+        column-rule: 1px solid;
+        list-style: none;
+        margin: 0;
+        overflow: hidden;
+        > * {
+            break-inside: avoid;
+            margin: 0;
+            text-align: left;
+            width: 100%;
+            padding: 0 0 0 0.5em;
+            &::after {
+                display: none;
+            }
+        }
+    }
+}

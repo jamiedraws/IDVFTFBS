@@ -1,0 +1,30 @@
+// utils
+@use "Shared/scss/templates/base/utils/scope";
+
+// layouts
+@use "layouts/express-checkout";
+@use "layouts/modal-dialog";
+
+// process payment page
+#dtm.dtm--processpayment {
+    #content_top {
+        box-shadow: none;
+        border: none;
+    }
+    .validation-summary-errors span {
+        background: none;
+    }
+}
+
+.dtm .dtm__in [class*="c-brand"],
+.dtm .dtm__in [class*="c-brand"] * {
+    font-size: 1em;
+}
+
+// this page uses fancybox
+//@include modal-dialog.base;
+//@include modal-dialog.cvv;
+
+@include scope.for-template {
+    @include express-checkout.base;
+}

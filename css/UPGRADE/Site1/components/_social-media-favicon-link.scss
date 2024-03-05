@@ -1,0 +1,37 @@
+$select: ".social-media-favicon-link" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/position";
+
+@mixin base {
+    #{$select} {
+        text-align: center;
+        color: colors.primary(warm-rose-hue-6);
+        font-family: fonts.get(tertiary);
+
+        &__favicon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+
+            > svg:last-child {
+                @include position.center-absolute($position: absolute);
+                font-size: 2em;
+                transform: translateY(-10%);
+            }
+        }
+
+        &__link {
+            display: block;
+            margin-top: 1rem;
+        }
+
+        @content;
+    }
+}

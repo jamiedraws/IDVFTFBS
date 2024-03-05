@@ -1,0 +1,93 @@
+@use "sass:map";
+@use "sass:math";
+
+$sizes: (
+    desktop: 64.75rem,
+    // 1100px
+    base-font: 1
+);
+
+// layouts
+@use "../../../Shared/css/template/base/layouts/document";
+@use "../../../Shared/css/template/base/layouts/view";
+@use "../../../Shared/css/template/base/layouts/section" with
+    ($container: map.get($sizes, desktop));
+
+// components
+@use "../../../Shared/css/template/base/components/list";
+
+// utils
+@use "../../../Shared/css/template/base/utils/unit-conversion" as convert with
+    ($base: map.get($sizes, base-font));
+@use "../../../Shared/css/template/dtm/utils/scope";
+
+// config
+@use "../config/fonts";
+@use "../config/colors";
+@use "../config/queries";
+
+@mixin base {
+    @include document.base;
+
+    @include scope.get-root {
+        font-size: #{map.get($sizes, base-font)}rem;
+        font-size: 10px;
+
+        // @media all and (max-width: queries.get(document-mobile-portrait)) {
+        //     font-size: clamp(
+        //         #{math.div(map.get($sizes, base-font), 2)}rem,
+        //         3.5vw,
+        //         #{map.get($sizes, base-font)}rem
+        //     );
+        // }
+    }
+
+    @include scope.for-template {
+        font: fonts.rem(20) fonts.get(base);
+        line-height: 1.45;
+        color: colors.get(base);
+    }
+
+    h2 {
+        font-size: fonts.rem(50);
+    }
+
+    ul:not([class*="c-list"]) {
+    }
+
+    input {
+        line-height: inherit;
+    }
+
+    fieldset {
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    [data-src-img] > img {
+        opacity: 0;
+    }
+
+    @include view;
+    @include section;
+}
+
+@mixin view {
+    @include view.new;
+
+    @include view.set-anchor-position(
+        $static-amount: #{convert.to-rem(58)},
+        $dynamic-amount: #{convert.to-rem(65)}
+    );
+
+    @include view.zero-anchor-position("[data-viewport]");
+}
+
+@mixin section {
+    @include section.new {
+        &__in {
+            padding: 1rem;
+        }
+    }
+}

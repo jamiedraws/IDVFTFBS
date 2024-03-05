@@ -1,0 +1,64 @@
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<OrderPageViewData>" %>
+<%@ Import Namespace="Dtm.Framework.ClientSites" %>
+<% var getFacebookImage = SettingsManager.ContextSettings["SocialPlugins.Facebook.OpenGraphImage"]; %>
+<% var getTwitterImage = SettingsManager.ContextSettings["SocialPlugins.Twitter.OpenGraphImage"]; %>
+
+<!DOCTYPE html>
+<html class="dtm @mv @dv dtm--<%= DtmContext.PageCode.ToLower() %> dtm--<%= DtmContext.Page.PageType.ToLower() %> dtm--<%= (DtmContext.Page.IsStartPageType ? "@f" : "@b") %> dtm--<%= (DtmContext.Page.PageType == "SubPage" || DtmContext.PageCode != "Index" ? "sub" : "front") %>">
+
+	<head>
+
+		<title><%= Model.PageTitle %></title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, <% if (Model.IsMobile) { %>initial-scale=1.0, <% } %>maximum-scale=1.0">
+	    <meta name="description" content="<%= Model.PageMetaDescription %>">
+	    <meta name="keywords" content="<%= Model.PageMetaKeywords %>">
+
+		<!-- // Open Graph Metadata -->
+		<meta property="og:title" content="<%= Model.PageTitle %>">
+		<meta property="og:type" content="website">
+		<meta property="og:description" content="<%= Model.PageMetaDescription %>">
+		<meta property="og:url" content="<%= DtmContext.Domain.FullDomainOfferVersionContext %>">
+		<meta property="og:image" content="<%= getFacebookImage %>">
+
+		<!-- // Twitter Metadata -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="<%= Model.PageTitle %>">
+		<meta name="twitter:description" content="<%= Model.PageMetaDescription %>">
+		<meta name="twitter:image" content="<%= getTwitterImage %>">
+		<meta name="twitter:domain" content="<%= DtmContext.Domain.FullDomainOfferVersionContext %>">
+
+	    <meta name="robots" content="noindex, nofollow" />
+
+        <link rel="preconnect" href="https://use.typekit.net/">
+        <link rel="stylesheet" href="https://use.typekit.net/dgl6nka.css">
+        <link rel="stylesheet" href="/css/catalog/style.css?v=3">
+       
+	    <link rel="shortcut icon" href="/favicon.ico?appV=<%= DtmContext.ApplicationVersion %>" />
+
+	    <!-- ************** AUTHOR NO. BELOW ************** -->
+
+	    <meta name="author" content="<%= DtmContext.Campaign.CampaignName %>" />
+
+	    <!-- ************** AUTHOR NO. ABOVE ************** -->
+
+		<asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
+	</head>
+
+	<body class="dtm__in dtm__in--mv dtm__in--dv">
+
+		<div>
+
+			<%-- // @HEADER --%>
+			<% Html.RenderPartial("Header", Model); %>
+
+			<asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+
+		</div>
+
+		<script defer src="/js/catalog/app.es5.js"></script>
+
+	</body>
+
+</html>

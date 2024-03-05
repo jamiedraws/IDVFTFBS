@@ -1,0 +1,85 @@
+$select: ".product-variant" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+
+@mixin base {
+    #{$select} {
+        color: colors.get(primary);
+
+        &__legend {
+            font: bold fonts.rem(25) / 1 fonts.get(accent);
+            color: colors.get(base);
+            margin-bottom: 1rem;
+        }
+
+        &__text {
+            padding: 0.5rem 1rem;
+            font-family: fonts.get(highlight);
+        }
+
+        &__group {
+            display: inline-flex;
+            justify-content: center;
+
+            border: solid 2px currentColor;
+            border-radius: 5px;
+        }
+
+        &__radio {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+
+            &:disabled {
+                cursor: not-allowed;
+            }
+
+            &:hover ~ #{$select}__text {
+                background-color: #dcdcdc;
+                transition: background-color 250ms linear;
+            }
+
+            &:checked ~ #{$select}__text {
+                background-color: colors.get(primary);
+                color: colors.get(light);
+            }
+        }
+
+        @content;
+    }
+}
+
+@mixin container {
+    #{$select} {
+        &--container {
+            margin-top: 1rem;
+
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin button {
+    #{$select} {
+        &--button {
+            position: relative;
+            display: inline-flex;
+
+            &:not(:first-child) {
+                border-left: solid 1px currentColor;
+            }
+
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}

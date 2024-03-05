@@ -1,0 +1,123 @@
+$select: ".promo-banner" !default;
+
+// config
+@use "./../config/fonts";
+@use "./../config/colors";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/background";
+
+@mixin base {
+    #{$select} {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 1rem;
+
+        @include background.color-map(
+            $background-color: colors.accent(latte-tint),
+            $text-color: currentColor
+        ) {
+        }
+
+        & &__promo {
+            font-size: fonts.em(12);
+            &--thong {
+                display: flex !important;
+                justify-content: center;
+                align-items: center;
+                //max-width: 45em; // for when there is 3 promos at the top
+                max-width: 51em;
+                @media all and (max-width: queries.get(document-mobile-portrait)) {
+/*                     max-width: 37em; */
+                }
+                img {
+                    max-width: 4em;
+                    margin-right: 4em;
+                }
+                > span {
+                    > * {
+                        display: block;
+                    }
+                }
+            }
+            &--split {
+                > span {
+                    display: block;
+                }
+            }
+        }
+
+        &__link {
+            font: inherit;
+            color: inherit;
+            font-style: italic;
+            font-weight: normal;
+            text-decoration: underline;
+            text-transform: lowercase;
+            margin-right: 0.25em;
+            &:not(:hover):not(:focus) {
+                text-decoration: underline;
+            }
+        }
+
+        &__icon {
+            fill: black;
+            vertical-align: middle;
+            font-size: 1.8em;
+            margin: -0.1em 0 0;
+            &--makeup-bag {
+                fill: colors.primary(warm-rose-hue-6);
+            }
+        }
+
+        &--center {
+            text-align: center;
+        }
+
+        @content;
+    }
+}
+
+@mixin scroll-indicator {
+    #{$select} {
+        &--scroll-indicator {
+            
+            @keyframes bounce
+            {
+            0% {
+                transform: translateY(0em);
+            }
+            50% {
+                transform: translateY(-0.25em);
+            }
+            100% {
+                transform: translateY(0em);
+            }
+            }
+
+            @media all and (max-width: queries.get(document-mobile-portrait)) {
+                &::after {
+                    content: "➞";
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    background: white;
+                    border-radius: 100%;
+                    font-size: 1.5em;
+                    border: 1px solid #f0d2c7;
+                    width: 1.3em;
+                    height: 1.3em;
+                    line-height: 1;
+                    position: absolute;
+                    margin: auto 0.4em;
+                    z-index: 2;
+                    padding: 0.125em 0.1em;
+                    animation: infinite bounce 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+            }
+    
+            @content;
+        }
+    }
+}

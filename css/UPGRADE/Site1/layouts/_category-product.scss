@@ -1,0 +1,124 @@
+$select: ".category-product" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/space";
+
+$single-stack-breakpoint: queries.rem(500);
+
+@mixin base {
+    #{$select} {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+        }
+
+        &__title {
+            font-weight: 500;
+        }
+
+        &__picture {
+            display: block;
+            border: 1px solid colors.primary(cool-rose);
+            margin-bottom: 1rem;
+            position: relative;
+            flex: 0 1 auto;
+        }
+
+        &__price {
+            display: block;
+            font-weight: bold;
+            s {
+                color: colors.primary(warm-rose-hue-6);
+            }
+        }
+
+        &__button,
+        &__cart {
+            margin-top: auto;
+            margin-bottom: 2rem;
+            padding-top: 1.5rem;
+        }
+
+        &__cart {
+            margin-top: auto;
+            min-height: 7em;
+        }
+
+        &__radiogroup {
+            margin-top: auto;
+        }
+
+        &__radiogroup + &__cart {
+            margin-top: 0;
+        }
+
+        &__cart > * {
+            justify-content: center;
+            @include group.gutter(0.75rem);
+        }
+
+        hr {
+            margin: 1rem 0;
+            border: none;
+            height: 1px;
+            width: 100%;
+            background: colors.primary(cool-rose);
+        }
+
+        @media all and (min-width: $single-stack-breakpoint) {
+            flex-direction: column;
+
+            > * {
+                width: 100%;
+            }
+
+            &__title {
+                flex: 0 0 3em;
+            }
+        }
+
+        @media all and (max-width: $single-stack-breakpoint) {
+            > * {
+                flex-basis: 100%;
+            }
+        }
+
+        @content;
+    }
+}
+
+@mixin category {
+    #{$select} {
+        &--category {
+            #{$select} {
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin listing {
+    #{$select} {
+        &--listing {
+            #{$select} {
+                &__info {
+                    flex: 0 0 auto;
+                }
+            }
+
+            @content;
+        }
+    }
+}

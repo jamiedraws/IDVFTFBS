@@ -1,0 +1,62 @@
+$select: ".fieldset" !default;
+
+// config
+@use "./../config/colors";
+@use "./../config/fonts";
+@use "./../config/queries";
+
+// abstracts
+@use "Shared/scss/templates/base/abstracts/group";
+@use "Shared/scss/templates/base/abstracts/space";
+
+@mixin base {
+    #{$select} {
+        &__group {
+            $size: 0.5rem;
+            @include group.contain($size);
+            @include group.flexchild(1 1 15em);
+        }
+
+        &__group > &__group {
+            margin: 0;
+        }
+
+        &__take-all {
+            flex-basis: 100%;
+        }
+
+        &__take-some {
+            flex-basis: 15em;
+        }
+
+        @content;
+    }
+}
+
+@mixin create-account {
+    #{$select} {
+        &--create-account {
+            #{$select} {
+                &__take-some {
+                    flex-basis: 20em;
+                }
+            }
+
+            @content;
+        }
+    }
+}
+
+@mixin login {
+    #{$select} {
+        &--login {
+            #{$select} {
+                &__take-some {
+                    padding-top: 2rem;
+                }
+            }
+
+            @content;
+        }
+    }
+}
